@@ -17,53 +17,78 @@ $(".nav-button").click(function(){
 // Start of Game Page
 
 $(function() {
-// Create random position
-function getRandomLatLng(map) {
-    // get the boundaries of the map
-    let bounds = map.getBounds();
-    let southWest = bounds.getSouthWest();
-    let northEast = bounds.getNorthEast();
-    let lngSpan = northEast.lng - southWest.lng;
-    let latSpan = northEast.lat - southWest.lat;
+    // Create random position
+    function getRandomLatLng(map) {
+        // get the boundaries of the map
+        let bounds = map.getBounds();
+        let southWest = bounds.getSouthWest();
+        let northEast = bounds.getNorthEast();
+        let lngSpan = northEast.lng - southWest.lng;
+        let latSpan = northEast.lat - southWest.lat;
 
-    let randomLng = Math.random() * lngSpan + southWest.lng;
-    let randomLat = Math.random() * latSpan + southWest.lat;
+        let randomLng = Math.random() * lngSpan + southWest.lng;
+        let randomLat = Math.random() * latSpan + southWest.lat;
 
-    return [ randomLat, randomLng,];
-}
+        return [ randomLat, randomLng,];
+    }
 
-// for Map loading ****
-let singapore = [ 1.376950, 103.806926];
-// no zoom control options
-let map = L.map("map").setView(singapore, 12);
-// Setup the tile layers
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 12,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
-}).addTo(map);
+    // for Map loading ****
+    let singapore = [ 1.376950, 103.806926];
+    // no zoom control options
+    let map = L.map("map", {zoomControl: false}).setView(singapore, 12);
+    // Prevent map from zooming using mouse
+    map.scrollWheelZoom.disable();
+    // map.dragging.disable();
 
-// For adding pokemon picture and name into status bar
-let url = "https://pokeapi.co/api/v2/pokemon/";
-let wantedPokemonNumber = Math.floor((Math.random()*152)+1);
+    // Setup the tile layers
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 12,
+        minzoom: 12,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
+    }).addTo(map);
 
-let start = document.querySelector("#start-btn");
-start.addEventListener('click', function(){
-    // only take out random pokemon from generation 1 only
-    axios.get(url+wantedPokemonNumber).then(function(response){
-        let HTMLfragment = `<h1>${response.data.name}</h1>
-        <img src="${response.data.sprites.front_default}"/>`
-        let identityDiv = document.querySelector("#pokemon-profile");
-        identityDiv.innerHTML = HTMLfragment;
-        let wantedPokemonMarkerPositon = getRandomLatLng(map);
-        let wantedPokemonMarker=L.marker(wantedPokemonMarkerPositon);
-        wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-        // wantedPokemonMarker = L.marker([getRandomLatLng(map)]);
-        wantedPokemonMarker.addTo(map);
-        })
+    // For adding pokemon picture and name into status bar
+    let url = "https://pokeapi.co/api/v2/pokemon/";
+    let pokemonNumber = Math.floor((Math.random()*152)+1);
+
+    // let wantedIcon = L.icon({iconColor: "red"});
+
+    let start = document.querySelector("#start-btn");
+    start.addEventListener('click', function(){
+        // only take out random pokemon from generation 1 only
+        axios.get(url + pokemonNumber).then(function(response){
+            let HTMLfragment = `<h1>${response.data.name}</h1>
+            <img src="${response.data.sprites.front_default}"/>`
+            let identityDiv = document.querySelector("#pokemon-profile");
+            identityDiv.innerHTML = HTMLfragment;
+            let wantedPokemonMarkerPositon = getRandomLatLng(map);
+            let wantedPokemonMarker=L.marker(wantedPokemonMarkerPositon) 
+            wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+            wantedPokemonMarker.addTo(map);
+
+            randomPokemon();
+
+            })
     })
+
+     function randomPokemon (){
+        let url = "https://pokeapi.co/api/v2/pokemon/";
+        for (let r = 0; r < 30; r++){
+            let pokemonNumber = Math.floor((Math.random()*152)+1);
+            axios.get(url + pokemonNumber).then(function(response){
+                let randomPokemonMarkerPositon = getRandomLatLng(map);
+                let randomPokemonMarker=L.marker(randomPokemonMarkerPositon) 
+                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.addTo(map);
+            })
+        }
+    }
+
+
+
 })
  
