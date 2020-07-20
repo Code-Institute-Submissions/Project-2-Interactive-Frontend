@@ -3,3 +3,71 @@
     font-size: 2em;
     align-items: center;
 }
+/* End of Navbar */
+
+/* For all pages */
+/* For All PAGES */
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.all-pages {
+    position: relative;
+}
+.page {
+    /* cover screen vertically */
+    height: 100vh;
+    /* width and height apply to all parts of the element */
+    box-sizing: border-box;
+}
+#page-1 {
+    position: absolute;
+    background-color: wheat;
+    /* cover screen horizontally */
+    width: 100%;
+}
+#page-2 {
+    position: absolute;
+    background-color: rgb(182, 230, 182);
+    width: 100%;
+}
+#page-3 {
+    position: absolute;
+    background-color: rgb(138, 73, 16);
+    width: 100%;
+}
+.shown {
+    /* returns page to original position */
+    transform: translateX(0%);
+}
+.hidden {
+    /* moves page to the left */
+    transform: translateX(-100%);
+}
+/* End of all pages */
+
+/* For Home page */
+
+#logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+#logo img {
+    height: auto;
+    width: 75vw;
+}
+#title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+}
+#rules {
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    margin-top: 30px;
+}
+/* End of Home Page */
