@@ -23,7 +23,7 @@
     </nav>
 
     <div id="all-pages">
-        <!-- start of Home Page -->
+             <!-- start of Home Page -->
         <div id="page-1" class="page">
         <h1>Home</h1>
             <div id="logo">
@@ -48,12 +48,51 @@
             </div>
         </div>
 
-        </div>
         <!-- start of Game Page -->
         <div id="page-2" class="page hidden">
         <h1>Game</h1>
+        <div id="status-bar" class="container-fluid row">
+                <div id="identity" class="card">
+                    <h2>Wanted</h2>
+
+                </div>
+                <div id="timer" class="card">
+
+                </div>
+                <div id="round" class="card">
+
+                </div>
+            </div>
+            <div id="marker-legend" class="container-fluid">
+                <ul>
+                    <li>Normal</li>
+                    <li>Fire</li>
+                    <li>Water</li>
+                    <li>Electric</li>
+                    <li>Grass</li>
+                    <li>Pyschic</li>
+                    <li>Bug</li>
+                    <li>Poison</li>
+                </ul>
+                <ul>
+                    <li>Ground</li>
+                    <li>Fighting</li>
+                    <li>Rock</li>
+                    <li>Ghost</li>
+                    <li>Ice</li>
+                    <li>Dragon</li>
+                    <li>Fairy</li>
+                </ul>
+            </div>
+            <div id="map"></div>
+            <div id="controls">
+                <button id="start-btn" class="controls">Start</button>
+                <button id="quit-btn" class="controls">Quit</button>
+                <button id="reset-btn" class="controls">Reset</button>
+            </div>
   
         </div>
+
         <!-- Start of Stats Page -->
         <div id="page-3" class="page hidden">
         <h1>Stats</h1>
@@ -61,19 +100,20 @@
         </div>
     </div>
 
+   
+
+
 
         <!-- jQuery first, then Bootstrap then everythin else, script.js last -->
-    <script
-			  src="https://code.jquery.com/jquery-3.5.1.slim.js"
-			  integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
-			  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+	crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <script src="script.js"></script>
 </body>

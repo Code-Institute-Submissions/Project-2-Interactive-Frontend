@@ -71,3 +71,58 @@ body {
     margin-top: 30px;
 }
 /* End of Home Page */
+
+/* Start of Game Page */
+#status-bar {
+    background-color: steelblue;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: auto;
+}
+#identity {
+    background-color: tomato;
+    /* height: 150px; */
+    height: auto;
+    width: 30vw;
+
+}
+#timer {
+    background-color: silver;
+    /* height: 150px; */
+    height: auto;
+    width: 30vw;
+}
+#round {
+    background-color: cornsilk;
+    /* height: 150px; */
+    height: auto;
+    width: 30vw;
+}
+#marker-legend {
+    background-color: cyan;
+    text-align: center;
+    /* justify-content: center; */
+    /* display: flex; */
+    /* align-self: center; */
+}
+#marker-legend li {
+    display: inline;
+    /* align-self: center; */
+    font-size: 2em;
+
+}
+#map {
+    height: 500px;
+}
+#controls {
+    display: flex;
+    justify-content: center;
+    /* margin: 20px; */
+}
+#controls button {
+    margin: 20px;
+    font-size: 1.5em;
+}
+/* End of Game Page */
