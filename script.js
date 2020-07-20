@@ -56,6 +56,7 @@ $(function() {
     // only take out random pokemon from generation 1 only
     let pokemonNumber = Math.floor((Math.random()*151)+1);
 
+    // To add wanted pokemon on map
     let start = document.querySelector("#start-btn");
     start.addEventListener('click', function(){
         axios.get(url + pokemonNumber).then(function(response){
@@ -132,12 +133,15 @@ $(function() {
             // wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
             // wantedPokemonMarker.addTo(map);
 
-            randomPokemon();
+            // randomPokemon();
+            // countdown();
 
             })
         start.disabled = true;
+        randomPokemon();
+        countdown();
     })
-
+    // add 29 random pokemon to map
      function randomPokemon (){
         //  need to make url and pokemonNumber in scope if not pokemon generated will be same as wantedPokemon
         let url = "https://pokeapi.co/api/v2/pokemon/";
@@ -214,6 +218,28 @@ $(function() {
         }
     }
 
+    // Start of timer
+    let timer = {};
+    function countdown(){
+        // 30 seconds countdown
+        timer.end = 30;
+        timer.sec = document.querySelector("#seconds");
+        // start if not 0
+        if (timer.end > 0) {
+            // hold timer object that repeats every 1 sec
+            timer.ticker = setInterval(function(){
+                timer.end--;
+                if (timer.end <= 0){
+                    // clears timer with setInterval
+                    clearInterval(timer.ticker);
+                    timer.end = 0;
+                }
+                console.log(timer.end)
+                let secs = timer.end;
+                timer.sec.innerHTML = secs
+            },1000)
+        }
+    }
 
 
 })
