@@ -53,32 +53,44 @@ $(function() {
 
     // For adding pokemon picture and name into status bar
     let url = "https://pokeapi.co/api/v2/pokemon/";
-    let pokemonNumber = Math.floor((Math.random()*152)+1);
+    // only take out random pokemon from generation 1 only
+    let pokemonNumber = Math.floor((Math.random()*151)+1);
+    // let pokeIcon = L.Icon.extend({
+    //     options: {
+    //         shadowUrl: "image/map-marker.png",
+    //         iconSize: [20, 20]
+    //     }
+    // });
+    // let blueIcon = new pokeIcon({iconUrl: "leaf-blue.png"});
 
-    // let wantedIcon = L.icon({iconColor: "red"});
+    // var marker = new L.Marker.SVGMarker(latlng, { iconOptions: { color: "rgb(0,0,100)" }})
 
     let start = document.querySelector("#start-btn");
     start.addEventListener('click', function(){
-        // only take out random pokemon from generation 1 only
         axios.get(url + pokemonNumber).then(function(response){
+            // to add in #pokemon-profile
             let HTMLfragment = `<h1>${response.data.name}</h1>
             <img src="${response.data.sprites.front_default}"/>`
             let identityDiv = document.querySelector("#pokemon-profile");
             identityDiv.innerHTML = HTMLfragment;
             let wantedPokemonMarkerPositon = getRandomLatLng(map);
-            let wantedPokemonMarker=L.marker(wantedPokemonMarkerPositon) 
+
+            let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 0, 255"}});
+            // let wantedPokemonMarker=L.marker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(211, 33, 45"}})
             wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
             wantedPokemonMarker.addTo(map);
 
-            randomPokemon();
+            // randomPokemon();
 
             })
+        start.disabled = true;
     })
 
      function randomPokemon (){
+        //  need to make url and pokemonNumber in scope if not pokemon generated will be same as wantedPokemon
         let url = "https://pokeapi.co/api/v2/pokemon/";
         for (let r = 0; r < 30; r++){
-            let pokemonNumber = Math.floor((Math.random()*152)+1);
+            let pokemonNumber = Math.floor((Math.random()*151)+1);
             axios.get(url + pokemonNumber).then(function(response){
                 let randomPokemonMarkerPositon = getRandomLatLng(map);
                 let randomPokemonMarker=L.marker(randomPokemonMarkerPositon) 
