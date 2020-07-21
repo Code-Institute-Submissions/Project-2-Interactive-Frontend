@@ -51,6 +51,9 @@ $(function() {
         accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
     }).addTo(map);
 
+
+// start of pokemon marker
+
     // For adding pokemon picture and name into status bar
     let url = "https://pokeapi.co/api/v2/pokemon/";
     // only take out random pokemon from generation 1 only
@@ -140,6 +143,7 @@ $(function() {
         start.disabled = true;
         randomPokemon();
         countdown();
+        roundCounter();
     })
     // add 29 random pokemon to map
      function randomPokemon (){
@@ -217,6 +221,7 @@ $(function() {
             })
         }
     }
+    // end of pokemon marker
 
     // Start of timer
     let timer = {};
@@ -236,11 +241,33 @@ $(function() {
                     // enable start button
                     start.disabled = false;
                 }
-                console.log(timer.end)
                 let secs = timer.end;
                 timer.sec.innerHTML = secs
             },1000)
         }
+    }
+    // end of timer
+
+    // start of round
+    let round = 0
+
+    function increaseRound(n) {
+        if (round < 5){
+            round += 1;
+            
+        } else if (round == 5){
+            start.disabled = true;
+        }
+    }
+
+    function roundCounter(){
+        increaseRound(1);
+        updateRound();
+    }
+
+    function updateRound(){
+        // round = document.querySelector("#round-count").innerHTML;
+         $("#round-count").text(round);
     }
 
 
