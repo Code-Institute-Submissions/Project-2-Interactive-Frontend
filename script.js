@@ -69,7 +69,7 @@ $(function() {
         axios.get(url + pokemonNumber).then(function(response){
             // axios.get(url + 9).then(function(response){
             // to add in #pokemon-profile
-            let HTMLfragment = `<h1>${response.data.name}</h1>
+            let HTMLfragment = `<h3>${response.data.name}</h3>
             <img src="${response.data.sprites.front_default}"/>`
             let identityDiv = document.querySelector("#pokemon-profile");
             identityDiv.innerHTML = HTMLfragment;
