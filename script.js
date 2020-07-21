@@ -157,7 +157,7 @@ $(function() {
             } else if (response.data.types[0].type.name == "fire"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 0, 0"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-               randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(map);
             } else if (response.data.types[0].type.name == "water"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 0, 255"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
@@ -233,6 +233,8 @@ $(function() {
                     // clears timer with setInterval
                     clearInterval(timer.ticker);
                     timer.end = 0;
+                    // enable start button
+                    start.disabled = false;
                 }
                 console.log(timer.end)
                 let secs = timer.end;
