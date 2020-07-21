@@ -51,6 +51,13 @@ $(function() {
         accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
     }).addTo(map);
 
+    // waterIcon = L.icon({
+    //     iconUrl: "icon/water.png",
+    //     iconSize: [50,20]
+    // });
+
+
+
     function removeMarkers(){
         map.removeLayer(pokeMarker);
     }
@@ -58,8 +65,8 @@ $(function() {
     function startGame(){
         // get new pokemon every start
         pokemonNumber = Math.floor((Math.random()*151)+1);
-        axios.get(url + pokemonNumber).then(function(response){
-            // axios.get(url + 17).then(function(response){
+        // axios.get(url + pokemonNumber).then(function(response){
+            axios.get(url + 9).then(function(response){
             // to add in #pokemon-profile
             let HTMLfragment = `<h1>${response.data.name}</h1>
             <img src="${response.data.sprites.front_default}"/>`
@@ -76,7 +83,8 @@ $(function() {
                 wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             } else if (response.data.types[0].type.name == "water"){
-                let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 0, 255"}});
+                let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: waterIcon});
+                // let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 0, 255"}});
                 wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "electric"){
