@@ -245,7 +245,7 @@ $(function() {
     let timer = {};
     function countdown(){
         // 30 seconds countdown
-        timer.end = 30;
+        timer.end = 31;
         timer.sec = document.querySelector("#seconds");
         // start if not 0
         if (timer.end > 0) {
@@ -293,11 +293,11 @@ $(function() {
     }
     // end of round
 
+// Start of quit button
     function removeMarkers(){
         map.removeLayer(pokeMarker);
     }
 
-    // Start of quit button
     let quit = document.querySelector("#quit-btn");
     quit.addEventListener("click", function(){
         if (round == 5){
@@ -305,12 +305,21 @@ $(function() {
         } else {
             start.disabled = false;
         }
-        
-        // map.removeLayer(pokeMarker);
         removeMarkers()
         timer.end = 0;
     })
+    // End of quit button
 
+// Start of reset button
+    let restart = document.querySelector("#reset-btn");
+    restart.addEventListener("click", function(){
+        round = 0;
+        updateRound()
+        timer.end = 0;
+        removeMarkers()
+        start.disabled = false;
+        alert("Start of New Game!")
 
+    })
 })
  
