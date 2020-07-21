@@ -52,16 +52,20 @@ $(function() {
     }).addTo(map);
 
 
+
+
 // start of pokemon marker
 
+    // Add all pokemon marker to a layer group so that can be removed by quit button
+    let pokeMarker = L.layerGroup();
     // For adding pokemon picture and name into status bar
     let url = "https://pokeapi.co/api/v2/pokemon/";
     // only take out random pokemon from generation 1 only
     let pokemonNumber = Math.floor((Math.random()*151)+1);
 
-    // To add wanted pokemon on map
+    // Start of start button
     let start = document.querySelector("#start-btn");
-    start.addEventListener('click', function(){
+    start.addEventListener("click", function(){
         axios.get(url + pokemonNumber).then(function(response){
             // axios.get(url + 147).then(function(response){
             // to add in #pokemon-profile
@@ -135,9 +139,8 @@ $(function() {
             // let wantedPokemonMarker=L.marker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(211, 33, 45"}})
             // wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
             // wantedPokemonMarker.addTo(map);
-
             })
-            // Make start button disabled during gameplay
+    // Make start button disabled during gameplay
         start.disabled = true;
         randomPokemon();
         countdown();
@@ -145,78 +148,95 @@ $(function() {
     })
     // add 29 random pokemon to map
      function randomPokemon (){
+         
         //  need to make url and pokemonNumber in scope if not pokemon generated will be same as wantedPokemon
         let url = "https://pokeapi.co/api/v2/pokemon/";
         for (let r = 0; r < 30; r++){
             let pokemonNumber = Math.floor((Math.random()*151)+1);
             axios.get(url + pokemonNumber).then(function(response){
                 let randomPokemonMarkerPositon = getRandomLatLng(map);
-
+            // Conditions to change marker color according to pokemon type
             if (response.data.types[0].type.name == "normal"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 255, 255"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             } else if (response.data.types[0].type.name == "fire"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 0, 0"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             } else if (response.data.types[0].type.name == "water"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 0, 255"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "electric"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 255, 0"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "grass"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 128, 0"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "psychic"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 165, 0"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "bug"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 255, 0"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "poison"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(178, 102, 255"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "ground"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(153, 76, 0"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "fighting"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 204, 153"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "rock"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(64, 64, 64"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "ghost"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(102, 0, 102"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "ice"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(153, 255, 153"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "dragon"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(102, 178, 255"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }  else if (response.data.types[0].type.name == "fairy"){
                 let randomPokemonMarker = new L.Marker.SVGMarker(randomPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 204, 204"}});
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                randomPokemonMarker.addTo(map);
+                // randomPokemonMarker.addTo(map);
+                randomPokemonMarker.addTo(pokeMarker);
             }
                 // let randomPokemonMarker=L.marker(randomPokemonMarkerPositon) 
                 // randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-                // randomPokemonMarker.addTo(map);
+                pokeMarker.addTo(map);
             })
+
         }
     }
     // end of pokemon marker
@@ -237,7 +257,7 @@ $(function() {
                     clearInterval(timer.ticker);
                     timer.end = 0;
                     // enable start button
-                    start.disabled = false;
+                    // start.disabled = false;
                 }
                 // To ensure start button stay disabled
                 if (round == 5){
@@ -268,12 +288,28 @@ $(function() {
     }
     // update the rounds in the status bar
     function updateRound(){
-        // round = document.querySelector("#round-count").innerHTML;
+        // round = document.querySelector("#round-count").innerText;
          $("#round-count").text(round);
     }
     // end of round
 
+    function removeMarkers(){
+        map.removeLayer(pokeMarker);
+    }
 
+    // Start of quit button
+    let quit = document.querySelector("#quit-btn");
+    quit.addEventListener("click", function(){
+        if (round == 5){
+            start.disabled = true;
+        } else {
+            start.disabled = false;
+        }
+        
+        // map.removeLayer(pokeMarker);
+        removeMarkers()
+        timer.end = 0;
+    })
 
 
 })
