@@ -136,10 +136,8 @@ $(function() {
             // wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
             // wantedPokemonMarker.addTo(map);
 
-            // randomPokemon();
-            // countdown();
-
             })
+            // Make start button disabled during gameplay
         start.disabled = true;
         randomPokemon();
         countdown();
@@ -241,6 +239,10 @@ $(function() {
                     // enable start button
                     start.disabled = false;
                 }
+                // To ensure start button stay disabled
+                if (round == 5){
+                    start.disabled = true;
+                }
                 let secs = timer.end;
                 timer.sec.innerHTML = secs
             },1000)
@@ -250,25 +252,28 @@ $(function() {
 
     // start of round
     let round = 0
-
+    // to increase round and prevent start button enabling after 5 rounds
     function increaseRound(n) {
         if (round < 5){
-            round += 1;
-            
-        } else if (round == 5){
+            round += 1;  
+        } 
+        if (round == 5){
             start.disabled = true;
         }
     }
-
+    // increase and update in real time
     function roundCounter(){
-        increaseRound(1);
+        increaseRound(0);
         updateRound();
     }
-
+    // update the rounds in the status bar
     function updateRound(){
         // round = document.querySelector("#round-count").innerHTML;
          $("#round-count").text(round);
     }
+    // end of round
+
+
 
 
 })
