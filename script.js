@@ -51,7 +51,9 @@ $(function() {
         accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
     }).addTo(map);
 
-
+    function removeMarkers(){
+        map.removeLayer(pokeMarker);
+    }
 
 
 // start of pokemon marker
@@ -67,7 +69,7 @@ $(function() {
     let start = document.querySelector("#start-btn");
     start.addEventListener("click", function(){
         axios.get(url + pokemonNumber).then(function(response){
-            // axios.get(url + 147).then(function(response){
+            // axios.get(url + 17).then(function(response){
             // to add in #pokemon-profile
             let HTMLfragment = `<h1>${response.data.name}</h1>
             <img src="${response.data.sprites.front_default}"/>`
@@ -77,63 +79,63 @@ $(function() {
         // Conditions to change marker color according to pokemon type
             if (response.data.types[0].type.name == "normal"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 255, 255"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             } else if (response.data.types[0].type.name == "fire"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 0, 0"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             } else if (response.data.types[0].type.name == "water"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 0, 255"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "electric"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 255, 0"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "grass"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 128, 0"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "psychic"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 165, 0"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "bug"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(0, 255, 0"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "poison"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(178, 102, 255"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "ground"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(153, 76, 0"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "fighting"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 204, 153"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "rock"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(64, 64, 64"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "ghost"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(102, 0, 102"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "ice"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(153, 255, 153"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "dragon"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(102, 178, 255"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }  else if (response.data.types[0].type.name == "fairy"){
                 let wantedPokemonMarker = new L.Marker.SVGMarker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(255, 204, 204"}});
-                wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(map);
             }
             // let wantedPokemonMarker=L.marker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(211, 33, 45"}})
@@ -145,6 +147,11 @@ $(function() {
         randomPokemon();
         countdown();
         roundCounter();
+        
+        // if (map.hasLayer(pokeMarker))
+        // {
+        //     removeMarkers()
+        // }
     })
     // add 29 random pokemon to map
      function randomPokemon (){
@@ -294,9 +301,9 @@ $(function() {
     // end of round
 
 // Start of quit button
-    function removeMarkers(){
-        map.removeLayer(pokeMarker);
-    }
+    // function removeMarkers(){
+    //     map.removeLayer(pokeMarker);
+    // }
 
     let quit = document.querySelector("#quit-btn");
     quit.addEventListener("click", function(){
@@ -307,6 +314,7 @@ $(function() {
         }
         removeMarkers()
         timer.end = 0;
+        map.setView(singapore, 12);
     })
     // End of quit button
 
@@ -318,6 +326,7 @@ $(function() {
         timer.end = 0;
         removeMarkers()
         start.disabled = false;
+        map.setView(singapore, 12);
         alert("Start of New Game!")
 
     })
