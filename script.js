@@ -32,7 +32,7 @@ $(function() {
         return [ randomLat, randomLng,];
     }
 
-    // for Map loading ****
+    // for Map loading 
     let singapore = [ 1.376950, 103.806926];
     // no zoom control options
     let map = L.map("map", {zoomControl: false}).setView(singapore, 12);
@@ -146,32 +146,41 @@ let capturedPokemon = [];
         randomPokemon();
         countdown();
         roundCounter();
-        console.log(wantedMarker)
         endRound();
+        
     }
     // End of startGame()
 
-// console.log(wantedMarker)
+timeData = [];
+// let begin = "";
+// let stop = "";
+
+// function endRoundTime(){
+//     let date = new Date();
+//     let timeTaken = date.getSeconds();
+//     timeData.push(timeTaken);
+// }
+
+
+// Start of endRound
+//  When wanted marker is clicked on the round ends
 function endRound(){
-    // wantedMarker.eachLayer(function(layer){
-    // layer.on("click", function(){
-    //     alert("Captured!")
-    //     console.log(layer)
-    // });
+    // this event is only possible if using featureGroup()
     wantedMarker.on("click", function(){
         timer.end = 0;
+        // endRoundTime();
+ 
         // alert("Captured!")
-        // console.log(wantedMarker)
     });
 
 }
 
 
 
+
+
 // start of pokemon marker
 
-    // Add all pokemon marker to a layer group so that can be removed by quit button
-    let randomMarker = L.layerGroup();
     // For adding pokemon picture and name into status bar
     let url = "https://pokeapi.co/api/v2/pokemon/";
     // only take out random pokemon from generation 1 only
@@ -184,11 +193,14 @@ function endRound(){
         startGame();
     })
 
+    // Add all random pokemon markers to a layer group so that can be removed by quit button
+    // let randomMarker = L.layerGroup();
+    let randomMarker = L.featureGroup();
     // add 29 random pokemon to map
      function randomPokemon (){
          
         //  need to make url and pokemonNumber in scope if not pokemon generated will be same as wantedPokemon
-        let url = "https://pokeapi.co/api/v2/pokemon/";
+        // let url = "https://pokeapi.co/api/v2/pokemon/";
         for (let r = 0; r < 30; r++){
             let pokemonNumber = Math.floor((Math.random()*151)+1);
             axios.get(url + pokemonNumber).then(function(response){
@@ -259,23 +271,17 @@ function endRound(){
                 // randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
                 randomMarker.addTo(map);
             })
-            // console.log(pokeMarker)
         }
     }
 
-// console.log(randomMarker)
-// pokeMarker.eachLayer(function(layer){
-//     console.log(layer)
-//     layer.on("click", function(){
-//         alert(this._leaflet_id)
-//     });
-// });
-// for (let i = 0; i < wantedPokemon.length; i++){
-//         wantedPokemon.addEventListener("click", function(){
-//         console.log(wantedPokemon[i])
-//         alert("Captured!")
-//     })
+    randomCounterData = []
+    randomCounter = 0
+// function randomCount(){
+    randomMarker.on("click", function(){
+        randomCounter += 1
+    })
 // }
+// randomCounterData.push(randomCounter);
     // end of pokemon marker
 
     // Start of timer
@@ -295,9 +301,9 @@ function endRound(){
                     timer.end = 0;
                 }
                 // To ensure start button stay disabled
-                if (round == 5){
-                    start.disabled = true;
-                }
+                // if (round == 5){
+                //     start.disabled = true;
+                // }
                 let secs = timer.end;
                 timer.sec.innerHTML = secs
             },1000)
@@ -311,7 +317,7 @@ function endRound(){
     // to increase round and prevent start button enabling after 5 rounds
     function increaseRound() {
         if (round < 5){
-            round += 1;  
+            round += 1;
         } 
         if (round == 5){
             start.disabled = true;
@@ -341,6 +347,7 @@ function endRound(){
         removeMarkers()
         timer.end = 0;
         map.setView(singapore, 12);
+        randomCounterData.push(randomCounter);
     })
 
     // End of quit button
@@ -349,14 +356,18 @@ function endRound(){
     let restart = document.querySelector("#reset-btn");
     restart.addEventListener("click", function(){
         round = 0;
-        updateRound()
+        updateRound();
         timer.end = 0;
-        removeMarkers()
+        removeMarkers();
         start.disabled = false;
         map.setView(singapore, 12);
-        alert("Start of New Game!")
+        alert("Start of New Game!");
+        randomCounterData.length = 0;
 
     })
 
- 
+// End of reset button
+
+console.log(randomCounterData)
+
 })
