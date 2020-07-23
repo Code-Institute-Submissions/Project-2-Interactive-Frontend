@@ -11,6 +11,10 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
+    background-image: url(image/pokemon-background.jpg);
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .all-pages {
     position: relative;
@@ -23,18 +27,18 @@ body {
 }
 #page-1 {
     position: absolute;
-    background-color: wheat;
+    /* background-color: wheat; */
     /* cover screen horizontally */
     width: 100%;
 }
 #page-2 {
     position: absolute;
-    background-color: rgb(182, 230, 182);
+    /* background-color: rgb(182, 230, 182); */
     width: 100%;
 }
 #page-3 {
     position: absolute;
-    background-color: rgb(138, 73, 16);
+    /* background-color: rgb(138, 73, 16); */
     width: 100%;
 }
 .shown {
@@ -56,7 +60,7 @@ body {
 }
 #logo img {
     height: auto;
-    width: 75vw;
+    width: 50vw;
 }
 #title {
     display: flex;
