@@ -135,7 +135,7 @@ function endRound(){
         pokemonNumber = Math.floor((Math.random()*151)+1);
         axios.get(url + pokemonNumber).then(function(response){
             // to add in #pokemon-profile
-            let HTMLfragment = `<h3>${response.data.name}</h3>
+            let HTMLfragment = `<h3>${response.data.name.toUpperCase()}</h3>
             <img src="${response.data.sprites.front_default}"/>`
             let identityDiv = document.querySelector("#pokemon-profile");
             identityDiv.innerHTML = HTMLfragment;
@@ -143,67 +143,67 @@ function endRound(){
         // Conditions to change marker color according to pokemon type
             if (response.data.types[0].type.name == "normal"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: normalIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             } else if (response.data.types[0].type.name == "fire"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: fireIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             } else if (response.data.types[0].type.name == "water"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: waterIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "electric"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: electricIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "grass"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: grassIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "psychic"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: psychicIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "bug"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: bugIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "poison"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: poisonIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "ground"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: groundIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "fighting"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: fightingIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "rock"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: rockIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "ghost"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: ghostIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "ice"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: iceIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "dragon"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: dragonIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }  else if (response.data.types[0].type.name == "fairy"){
                 let wantedPokemonMarker = L.marker(wantedPokemonMarkerPositon, {icon: fairyIcon});
-                wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
+                wantedPokemonMarker.bindPopup(`<p>Captured!<p><p>${response.data.name.toUpperCase()}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }
             // Add pokemon profiles to captured gallery
-            let capturedHTML = `<div class="card row"><h3>${response.data.name}</h3>
+            let capturedHTML = `<div class="card row"><h3>${response.data.name.toUpperCase()}</h3>
             <img src="${response.data.sprites.front_default}"/></div>`
             capturedDivChild = document.createElement("div");
             capturedDivChild.innerHTML = capturedHTML
@@ -235,63 +235,63 @@ function endRound(){
             // Conditions to change marker color according to pokemon type
             if (response.data.types[0].type.name == "normal"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: normalIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             } else if (response.data.types[0].type.name == "fire"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: fireIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             } else if (response.data.types[0].type.name == "water"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: waterIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "electric"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: electricIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "grass"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: grassIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "psychic"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: psychicIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "bug"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: bugIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "poison"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: poisonIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "ground"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: groundIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "fighting"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: fightingIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "rock"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: rockIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "ghost"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: ghostIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "ice"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: iceIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "dragon"){
                 let randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: dragonIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }  else if (response.data.types[0].type.name == "fairy"){
                 let  randomPokemonMarker = L.marker(randomPokemonMarkerPositon, {icon: fairyIcon});
-                randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
+                randomPokemonMarker.bindPopup(`<p>${response.data.name.toUpperCase()}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }
                 randomMarker.addTo(map);
@@ -322,8 +322,8 @@ function endRound(){
     // End of quit button
 
 // Start of reset button
-    let restart = document.querySelector("#reset-btn");
-    restart.addEventListener("click", function(){
+    let reset = document.querySelector("#reset-btn");
+    reset.addEventListener("click", function(){
         // sets round to zero
         round = 0;
         updateRound();
