@@ -38,7 +38,6 @@ $(function() {
     let map = L.map("map", {zoomControl: false}).setView(singapore, 12);
     // Prevent map from zooming using mouse
     map.scrollWheelZoom.disable();
-    // map.dragging.disable();
 
     // Setup the tile layers
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -51,19 +50,88 @@ $(function() {
         accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw' //demo access token
     }).addTo(map);
 
+// All global variables
+
+// For adding pokemon picture and name into status bar
+let url = "https://pokeapi.co/api/v2/pokemon/";
+
+// only take out random pokemon from generation 1 only
+let pokemonNumber = Math.floor((Math.random()*151)+1);
+
+// Use featureGroup rather than layerGroup so that markers can be clicked on individually
+let randomMarker = L.featureGroup();
+let wantedMarker = L.featureGroup();
+
+let capturedDiv = document.querySelector("#captured-gallery");
+let capturedDivChild;
+
+let totalCounterData = []
+let totalCounter = 0
+
 //  to remove markers from maps
     function removeMarkers(){
-        // map.removeLayer(pokeMarker);
         //  Use clearLayers() as there will delete marker from map memory
         randomMarker.clearLayers();
         wantedMarker.clearLayers();
     }
+//  When wanted marker is clicked on the round ends
+function endRound(){
+    // this event is only possible if using featureGroup()
+    wantedMarker.on("click", function(){
+        timer.end = 0;
+        totalCounter += 1;
+    });
+}
+ // Start of 30 seconds countdown
+    let timer = {};
+    function countdown(){
+        // 30 seconds countdown + 1 second reaction time
+        timer.end = 31;
+        timer.sec = document.querySelector("#seconds");
+        // start if not 0
+        if (timer.end > 0) {
+            // hold timer object that repeats every 1 sec
+            timer.ticker = setInterval(function(){
+                timer.end--;
+                if (timer.end <= 0){
+                    // clears timer with setInterval
+                    clearInterval(timer.ticker);
+                    timer.end = 0;
+                    // Add number of clicks array
+                    totalCounterData.push(totalCounter)
+                    // Reveal the position of wanted Pokemon when timer is 0
+                    randomMarker.clearLayers();
+                }
+                let secs = timer.end;
+                timer.sec.innerHTML = secs
+            },1000)
+        }
+    }
+    // end of timer
 
-// let wantedMarker = L.layerGroup();
-let wantedMarker = L.featureGroup();
-let capturedDiv = document.querySelector("#captured-gallery");
-// let capturedDivChild = document.createElement("div");
-let capturedDivChild;
+    // start of round
+    let round = 0
+    // to increase round and prevent start button enabling after 5 rounds
+    function increaseRound() {
+        if (round < 5){
+            round += 1;
+        } 
+        if (round == 5){
+            start.disabled = true;
+        }
+    }
+    // increase and update in round on display
+    function roundCounter(){
+        increaseRound(0);
+        updateRound();
+    }
+    // update the rounds in the status bar
+    function updateRound(){
+        // round = document.querySelector("#round-count").innerText;
+         $("#round-count").text(round);
+    }
+    // end of round
+
 // Start the game and generate pokemon
     function startGame(){
         // get new pokemon every start
@@ -138,19 +206,14 @@ let capturedDivChild;
                 wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }
-            // Add to captured gallery
-            let capturedHTML = `<div class="row"><h3>${response.data.name}</h3>
+            // Add pokemon profiles to captured gallery
+            let capturedHTML = `<div class="card row"><h3>${response.data.name}</h3>
             <img src="${response.data.sprites.front_default}"/>
             <p>${response.data.types[0].type.name}</p></div>`
-            // let capturedDiv = document.querySelector("#captured-gallery");
-            // let capturedDivChild = document.createElement("div");
             capturedDivChild = document.createElement("div");
             capturedDivChild.innerHTML = capturedHTML
             capturedDiv.appendChild(capturedDivChild);
             wantedMarker.addTo(map);
-            // let wantedPokemonMarker=L.marker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(211, 33, 45"}})
-            // wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
-            // wantedPokemonMarker.addTo(map);
         })
     // Make start button disabled during gameplay
         start.disabled = true;
@@ -158,38 +221,7 @@ let capturedDivChild;
         countdown();
         roundCounter();
         endRound();
-        
     }
-    // End of startGame()
-
-
-// Start of endRound
-//  When wanted marker is clicked on the round ends
-// let wantedCounter = 0
-function endRound(){
-    // this event is only possible if using featureGroup()
-    wantedMarker.on("click", function(){
-        timer.end = 0;
-        totalCounter += 1;
-        // perRoundCounter += 1;
-        // wantedCounter += 1;
-        // endRoundTime();
- 
-        // alert("Captured!")
-    });
-
-}
-
-
-
-
-
-// start of pokemon marker
-
-    // For adding pokemon picture and name into status bar
-    let url = "https://pokeapi.co/api/v2/pokemon/";
-    // only take out random pokemon from generation 1 only
-    let pokemonNumber = Math.floor((Math.random()*151)+1);
 
     // Start of start button
     let start = document.querySelector("#start-btn");
@@ -198,12 +230,8 @@ function endRound(){
         startGame();
     })
 
-    // Add all random pokemon markers to a layer group so that can be removed by quit button
-    // let randomMarker = L.layerGroup();
-    let randomMarker = L.featureGroup();
     // add 29 random pokemon to map
      function randomPokemon (){
-         
         //  need to make url and pokemonNumber in scope if not pokemon generated will be same as wantedPokemon
         // let url = "https://pokeapi.co/api/v2/pokemon/";
         for (let r = 0; r < 30; r++){
@@ -272,87 +300,16 @@ function endRound(){
                 randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
                 randomPokemonMarker.addTo(randomMarker);
             }
-                // let randomPokemonMarker=L.marker(randomPokemonMarkerPositon) 
-                // randomPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
                 randomMarker.addTo(map);
             })
         }
-        // randomCount()
-    }
-    // let roundCounterData = []
-    // perRoundCounter = 0
-    let totalCounterData = []
-    let totalCounter = 0
-    // let totalCounter = randomCounter + wantedCounter;
-// function randomCount(){
+    } 
+// Count of markers clicked on
     randomMarker.on("click", function(){
         totalCounter += 1;
-        // perRoundCounter += 1;
-        // console.log(perRoundCounter)
     })
-// }
-// randomCounterData.push(randomCounter);
-    // end of pokemon marker
-
-    // Start of timer
-    let timer = {};
-    function countdown(){
-        // 30 seconds countdown
-        timer.end = 31;
-        timer.sec = document.querySelector("#seconds");
-        // start if not 0
-        if (timer.end > 0) {
-            // hold timer object that repeats every 1 sec
-            timer.ticker = setInterval(function(){
-                timer.end--;
-                if (timer.end <= 0){
-                    // clears timer with setInterval
-                    clearInterval(timer.ticker);
-                    timer.end = 0;
-                    // Add number of clicks array
-                    // counterData.push(totalCounter)
-                    totalCounterData.push(totalCounter)
-                    // roundCounterData.push(perRoundCounter)
-                    // Reveal the position of wanted Pokemon when timer is 0
-                    randomMarker.clearLayers();
-                }
-                // To ensure start button stay disabled
-                // if (round == 5){
-                //     start.disabled = true;
-                // }
-                let secs = timer.end;
-                timer.sec.innerHTML = secs
-            },1000)
-        }
-    }
-    // end of timer
-
-    // start of round
-
-    let round = 0
-    // to increase round and prevent start button enabling after 5 rounds
-    function increaseRound() {
-        if (round < 5){
-            round += 1;
-        } 
-        if (round == 5){
-            start.disabled = true;
-        }
-    }
-    // increase and update in real time
-    function roundCounter(){
-        increaseRound(0);
-        updateRound();
-    }
-    // update the rounds in the status bar
-    function updateRound(){
-        // round = document.querySelector("#round-count").innerText;
-         $("#round-count").text(round);
-    }
-    // end of round
-
+    
 // Start of quit button
-
     let quit = document.querySelector("#quit-btn");
     quit.addEventListener("click", function(){
         if (round == 5){
@@ -362,42 +319,36 @@ function endRound(){
         }
         removeMarkers()
         timer.end = 0;
+        // set map back to origin after each round
         map.setView(singapore, 12);
-        // roundCounterData.push(perRoundCounter)
+        // updates the number of marker clicks after each round
         barChart.update();
-        // randomCounterData.push(randomCounter);
     })
-
     // End of quit button
 
 // Start of reset button
     let restart = document.querySelector("#reset-btn");
     restart.addEventListener("click", function(){
+        // sets round to zero
         round = 0;
         updateRound();
         timer.end = 0;
         removeMarkers();
+        // Enables start button
         start.disabled = false;
+        // set map back to origin after each round
         map.setView(singapore, 12);
         alert("Start of New Game!");
+        // Removes all marker click data on bar chart
         totalCounterData.length = 0;
+        // Removes all pokemon profile on captured gallery
         capturedDiv.querySelectorAll("div").forEach(n => n.remove());
     })
 
 // End of reset button
-
-// console.log(randomCounterData)
-
-// }) this it the end of the games function but extended to include stats
 // End of Games Page
 
 // Start of Stats Page
-
-
-// for (let c = 0; c < capturedPokemon.length; c++){
-//     capturedPokemon[c] = capturedDiv.innerHTML;
-// }
-
 let options = {
     scales: {yAxes:[{
         ticks: {
@@ -414,7 +365,6 @@ let barChart = new Chart(barContext, {
         datasets: [{
             label: "Total Pokemon Marker Clicks",
             data: totalCounterData,
-            // data: roundCounterData,
             backgroundColor: ["blue", "blue", "blue", "blue", "blue"]
         }]
     },
