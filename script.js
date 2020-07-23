@@ -164,10 +164,13 @@ timeData = [];
 
 // Start of endRound
 //  When wanted marker is clicked on the round ends
+// let wantedCounter = 0
 function endRound(){
     // this event is only possible if using featureGroup()
     wantedMarker.on("click", function(){
         timer.end = 0;
+        randomCounter += 1
+        // wantedCounter += 1;
         // endRoundTime();
  
         // alert("Captured!")
@@ -272,13 +275,16 @@ function endRound(){
                 randomMarker.addTo(map);
             })
         }
+        // randomCount()
     }
 
-    let randomCounterData = []
+    let counterData = []
     let randomCounter = 0
+    // let totalCounter = randomCounter + wantedCounter;
 // function randomCount(){
     randomMarker.on("click", function(){
         randomCounter += 1
+        console.log(randomCounter)
     })
 // }
 // randomCounterData.push(randomCounter);
@@ -300,7 +306,8 @@ function endRound(){
                     clearInterval(timer.ticker);
                     timer.end = 0;
                     // Add number of clicks array
-                    randomCounterData.push(randomCounter)
+                    // counterData.push(totalCounter)
+                    counterData.push(randomCounter)
                     // Reveal the position of wanted Pokemon when timer is 0
                     randomMarker.clearLayers();
                 }
@@ -351,6 +358,7 @@ function endRound(){
         removeMarkers()
         timer.end = 0;
         map.setView(singapore, 12);
+        barChart.update();
         // randomCounterData.push(randomCounter);
     })
 
@@ -366,7 +374,7 @@ function endRound(){
         start.disabled = false;
         map.setView(singapore, 12);
         alert("Start of New Game!");
-        randomCounterData.length = 0;
+        counterData.length = 0;
 
     })
 
@@ -393,8 +401,8 @@ let barChart = new Chart(context, {
     data: {
         labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"],
         datasets: [{
-            label: "Total Random Pokemon Marker Clicks",
-            data: randomCounterData,
+            label: "Total Pokemon Marker Clicks",
+            data: counterData,
             backgroundColor: ["blue", "blue", "blue", "blue", "blue"]
         }]
     },
@@ -402,5 +410,7 @@ let barChart = new Chart(context, {
 });
 
 
-console.log(randomCounterData)
+// console.log(randomCounter)
+// console.log(wantedCounter)
+// console.log(totalCounter)
 })
