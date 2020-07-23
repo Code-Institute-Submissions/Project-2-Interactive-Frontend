@@ -151,16 +151,6 @@ let capturedPokemon = [];
     }
     // End of startGame()
 
-timeData = [];
-// let begin = "";
-// let stop = "";
-
-// function endRoundTime(){
-//     let date = new Date();
-//     let timeTaken = date.getSeconds();
-//     timeData.push(timeTaken);
-// }
-
 
 // Start of endRound
 //  When wanted marker is clicked on the round ends
@@ -169,7 +159,8 @@ function endRound(){
     // this event is only possible if using featureGroup()
     wantedMarker.on("click", function(){
         timer.end = 0;
-        randomCounter += 1
+        totalCounter += 1;
+        // perRoundCounter += 1;
         // wantedCounter += 1;
         // endRoundTime();
  
@@ -277,14 +268,16 @@ function endRound(){
         }
         // randomCount()
     }
-
-    let counterData = []
-    let randomCounter = 0
+    // let roundCounterData = []
+    // perRoundCounter = 0
+    let totalCounterData = []
+    let totalCounter = 0
     // let totalCounter = randomCounter + wantedCounter;
 // function randomCount(){
     randomMarker.on("click", function(){
-        randomCounter += 1
-        console.log(randomCounter)
+        totalCounter += 1;
+        // perRoundCounter += 1;
+        // console.log(perRoundCounter)
     })
 // }
 // randomCounterData.push(randomCounter);
@@ -307,7 +300,8 @@ function endRound(){
                     timer.end = 0;
                     // Add number of clicks array
                     // counterData.push(totalCounter)
-                    counterData.push(randomCounter)
+                    totalCounterData.push(totalCounter)
+                    // roundCounterData.push(perRoundCounter)
                     // Reveal the position of wanted Pokemon when timer is 0
                     randomMarker.clearLayers();
                 }
@@ -358,7 +352,9 @@ function endRound(){
         removeMarkers()
         timer.end = 0;
         map.setView(singapore, 12);
+        // roundCounterData.push(perRoundCounter)
         barChart.update();
+        // perRoundCounter = 0;
         // randomCounterData.push(randomCounter);
     })
 
@@ -374,7 +370,7 @@ function endRound(){
         start.disabled = false;
         map.setView(singapore, 12);
         alert("Start of New Game!");
-        counterData.length = 0;
+        totalCounterData.length = 0;
 
     })
 
@@ -387,7 +383,6 @@ function endRound(){
 
 // Start of Stats Page
 
-let context = document.querySelector("#bar-chart").getContext("2d");
 let options = {
     scales: {yAxes:[{
         ticks: {
@@ -396,21 +391,40 @@ let options = {
     }]}
 };
 // start of bar chart
-let barChart = new Chart(context, {
+let barContext = document.querySelector("#bar-chart").getContext("2d");
+let barChart = new Chart(barContext, {
     type: "bar",
     data: {
         labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"],
         datasets: [{
             label: "Total Pokemon Marker Clicks",
-            data: counterData,
+            // data: totalCounterData,
+            data: roundCounterData,
             backgroundColor: ["blue", "blue", "blue", "blue", "blue"]
         }]
     },
     options: options
 });
 
+// start of line chart
 
-// console.log(randomCounter)
-// console.log(wantedCounter)
-// console.log(totalCounter)
+// let lineContext =document.querySelector("#line-chart").getContext("2d");
+// let lineChart = new Chart(lineContext, {
+//     type: "line",
+//     data: {
+//         labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"],
+//         datasets: [{
+//             label: "Total Pokemon Marker Clicks",
+//             // data: totalCounterData,
+//             data: [200, 300, 400, 0, 20],
+//             // color the line
+//             // backgroundColor: "red",
+//             // borderColor: "red",
+//             // borderWidth: 1
+//         }]
+//     },
+//     options: options
+// });
+
+
 })
