@@ -274,8 +274,8 @@ function endRound(){
         }
     }
 
-    randomCounterData = []
-    randomCounter = 0
+    let randomCounterData = []
+    let randomCounter = 0
 // function randomCount(){
     randomMarker.on("click", function(){
         randomCounter += 1
@@ -299,6 +299,10 @@ function endRound(){
                     // clears timer with setInterval
                     clearInterval(timer.ticker);
                     timer.end = 0;
+                    // Add number of clicks array
+                    randomCounterData.push(randomCounter)
+                    // Reveal the position of wanted Pokemon when timer is 0
+                    randomMarker.clearLayers();
                 }
                 // To ensure start button stay disabled
                 // if (round == 5){
@@ -347,7 +351,7 @@ function endRound(){
         removeMarkers()
         timer.end = 0;
         map.setView(singapore, 12);
-        randomCounterData.push(randomCounter);
+        // randomCounterData.push(randomCounter);
     })
 
     // End of quit button
@@ -368,6 +372,35 @@ function endRound(){
 
 // End of reset button
 
-console.log(randomCounterData)
+// console.log(randomCounterData)
 
+// }) this it the end of the games function but extended to include stats
+// End of Games Page
+
+// Start of Stats Page
+
+let context = document.querySelector("#bar-chart").getContext("2d");
+let options = {
+    scales: {yAxes:[{
+        ticks: {
+            beginAtZero: true
+        }
+    }]}
+};
+// start of bar chart
+let barChart = new Chart(context, {
+    type: "bar",
+    data: {
+        labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"],
+        datasets: [{
+            label: "Total Random Pokemon Marker Clicks",
+            data: randomCounterData,
+            backgroundColor: ["blue", "blue", "blue", "blue", "blue"]
+        }]
+    },
+    options: options
+});
+
+
+console.log(randomCounterData)
 })
