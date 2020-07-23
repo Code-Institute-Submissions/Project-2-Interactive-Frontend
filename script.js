@@ -61,7 +61,9 @@ $(function() {
 
 // let wantedMarker = L.layerGroup();
 let wantedMarker = L.featureGroup();
-let capturedPokemon = [];
+let capturedDiv = document.querySelector("#captured-gallery");
+// let capturedDivChild = document.createElement("div");
+let capturedDivChild;
 // Start the game and generate pokemon
     function startGame(){
         // get new pokemon every start
@@ -136,6 +138,15 @@ let capturedPokemon = [];
                 wantedPokemonMarker.bindPopup(`<p>WANTED!<p><p>${response.data.name}</p>`)
                 wantedPokemonMarker.addTo(wantedMarker);
             }
+            // Add to captured gallery
+            let capturedHTML = `<div class="row"><h3>${response.data.name}</h3>
+            <img src="${response.data.sprites.front_default}"/>
+            <p>${response.data.types[0].type.name}</p></div>`
+            // let capturedDiv = document.querySelector("#captured-gallery");
+            // let capturedDivChild = document.createElement("div");
+            capturedDivChild = document.createElement("div");
+            capturedDivChild.innerHTML = capturedHTML
+            capturedDiv.appendChild(capturedDivChild);
             wantedMarker.addTo(map);
             // let wantedPokemonMarker=L.marker(wantedPokemonMarkerPositon, {iconOptions: {fillColor: "rgb(211, 33, 45"}})
             // wantedPokemonMarker.bindPopup(`<p>${response.data.name}</p>`)
@@ -354,7 +365,6 @@ function endRound(){
         map.setView(singapore, 12);
         // roundCounterData.push(perRoundCounter)
         barChart.update();
-        // perRoundCounter = 0;
         // randomCounterData.push(randomCounter);
     })
 
@@ -371,7 +381,7 @@ function endRound(){
         map.setView(singapore, 12);
         alert("Start of New Game!");
         totalCounterData.length = 0;
-
+        capturedDiv.querySelectorAll("div").forEach(n => n.remove());
     })
 
 // End of reset button
@@ -382,6 +392,11 @@ function endRound(){
 // End of Games Page
 
 // Start of Stats Page
+
+
+// for (let c = 0; c < capturedPokemon.length; c++){
+//     capturedPokemon[c] = capturedDiv.innerHTML;
+// }
 
 let options = {
     scales: {yAxes:[{
@@ -398,8 +413,8 @@ let barChart = new Chart(barContext, {
         labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"],
         datasets: [{
             label: "Total Pokemon Marker Clicks",
-            // data: totalCounterData,
-            data: roundCounterData,
+            data: totalCounterData,
+            // data: roundCounterData,
             backgroundColor: ["blue", "blue", "blue", "blue", "blue"]
         }]
     },
