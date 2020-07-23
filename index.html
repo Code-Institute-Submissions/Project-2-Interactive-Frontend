@@ -49,24 +49,6 @@
         <!-- start of Game Page -->
         <div id="page-2" class="page hidden">
         <!-- <h1>Game</h1> -->
-        <div id="status-bar" class="container-fluid">
-                <div id="identity" class="card ">
-                    <h2>Wanted</h2>
-                    <!-- so pokemon appears without overwriting h2 -->
-                    <div id="pokemon-profile">
-                    </div>
-                </div>
-                <div id="timer" class="card column">
-                    <h2>Countdown</h2>
-                    <p><span id="seconds">30</span></p>
-
-                </div>
-                <div id="round" class="card column">
-                <h2>Round</h2>
-                <p><span id="round-count">0</span>/5</p>
-
-                </div>
-            </div>
             <div id="marker-legend" class="container-fluid">
                 <ul>
                     <li><img src="icon/normal.png"></li>
@@ -82,8 +64,6 @@
                     <li><img src="icon/ground.png"></li>
                     <li><img src="icon/fighting.png"></li>
                 </ul>
-                
-                   
                 <ul>
                     <li><img src="icon/rock.png"></li>
                     <li><img src="icon/ghost.png"></li>
@@ -92,13 +72,28 @@
                     <li><img src="icon/fairy.png"></li>
                 </ul>
             </div>
-            <div id="map"></div>
-            <div id="controls">
-                <button id="start-btn" class="controls">Start Game</button>
-                <button id="quit-btn" class="controls">Quit Round</button>
-                <button id="reset-btn" class="controls">Reset Game</button>
-            </div>
-  
+            <div id="status-bar" class="container-fluid">
+                <div id="identity" class="card ">
+                        <h2>Wanted</h2>
+                        <!-- so pokemon appears without overwriting h2 -->
+                        <div id="pokemon-profile">
+                        </div>
+                    </div>
+                    <div id="timer" class="card column">
+                        <h2>Countdown</h2>
+                        <p><span id="seconds">30</span></p>
+                    </div>
+                    <div id="round" class="card column">
+                        <h2>Round</h2>
+                        <p><span id="round-count">0</span>/5</p>
+                    </div>
+                </div>
+                <div id="map"></div>
+                <div id="controls">
+                    <button id="start-btn" class="controls">Start Game</button>
+                    <button id="quit-btn" class="controls">Quit Round</button>
+                    <button id="reset-btn" class="controls">Reset Game</button>
+                </div>
         </div>
 
         <!-- Start of Stats Page -->

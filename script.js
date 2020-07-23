@@ -15,9 +15,8 @@ $(".nav-button").click(function(){
 // end of Page Control
 
 // Start of Game Page
-
 $(function() {
-    // Create random position
+    // Create random position for markers
     function getRandomLatLng(map) {
         // get the boundaries of the map
         let bounds = map.getBounds();
@@ -54,21 +53,19 @@ $(function() {
 
 // For adding pokemon picture and name into status bar
 let url = "https://pokeapi.co/api/v2/pokemon/";
-
-// only take out random pokemon from generation 1 only
+// Only take out random pokemon from generation 1
 let pokemonNumber = Math.floor((Math.random()*151)+1);
-
 // Use featureGroup rather than layerGroup so that markers can be clicked on individually
 let randomMarker = L.featureGroup();
 let wantedMarker = L.featureGroup();
-
+// To display pokemon profiles in captured gallery
 let capturedDiv = document.querySelector("#captured-gallery");
 let capturedDivChild;
-
+// To count marker clicks and present it bar chart
 let totalCounterData = []
 let totalCounter = 0
 
-//  to remove markers from maps
+//  To remove markers from maps
     function removeMarkers(){
         //  Use clearLayers() as there will delete marker from map memory
         randomMarker.clearLayers();
@@ -132,12 +129,11 @@ function endRound(){
     }
     // end of round
 
-// Start the game and generate pokemon
+// Generate wanted pokemon and other follow up functions when start pressed
     function startGame(){
         // get new pokemon every start
         pokemonNumber = Math.floor((Math.random()*151)+1);
         axios.get(url + pokemonNumber).then(function(response){
-            // axios.get(url + 16).then(function(response){
             // to add in #pokemon-profile
             let HTMLfragment = `<h3>${response.data.name}</h3>
             <img src="${response.data.sprites.front_default}"/>`
@@ -208,8 +204,7 @@ function endRound(){
             }
             // Add pokemon profiles to captured gallery
             let capturedHTML = `<div class="card row"><h3>${response.data.name}</h3>
-            <img src="${response.data.sprites.front_default}"/>
-            <p>${response.data.types[0].type.name}</p></div>`
+            <img src="${response.data.sprites.front_default}"/></div>`
             capturedDivChild = document.createElement("div");
             capturedDivChild.innerHTML = capturedHTML
             capturedDiv.appendChild(capturedDivChild);
@@ -223,10 +218,9 @@ function endRound(){
         endRound();
     }
 
-    // Start of start button
+    // Start Game
     let start = document.querySelector("#start-btn");
     start.addEventListener("click", function(){
-        // removeMarkers();
         startGame();
     })
 
@@ -308,10 +302,11 @@ function endRound(){
     randomMarker.on("click", function(){
         totalCounter += 1;
     })
-    
+
 // Start of quit button
     let quit = document.querySelector("#quit-btn");
     quit.addEventListener("click", function(){
+        // start button to be disabled after 5 rounds to prompt user to reset
         if (round == 5){
             start.disabled = true;
         } else {
