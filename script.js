@@ -64,6 +64,7 @@ let capturedDivChild;
 // To count marker clicks and present it bar chart
 let totalCounterData = []
 let totalCounter = 0
+let song = document.querySelector("#pokesong");
 
 //  To remove markers from maps
     function removeMarkers(){
@@ -127,6 +128,7 @@ function endRound(){
         // round = document.querySelector("#round-count").innerText;
          $("#round-count").text(round);
     }
+
     // end of round
 
 // Generate wanted pokemon and other follow up functions when start pressed
@@ -222,6 +224,8 @@ function endRound(){
     let start = document.querySelector("#start-btn");
     start.addEventListener("click", function(){
         startGame();
+        song.play();
+
     })
 
     // add 29 random pokemon to map
@@ -338,6 +342,8 @@ function endRound(){
         totalCounterData.length = 0;
         // Removes all pokemon profile on captured gallery
         capturedDiv.querySelectorAll("div").forEach(n => n.remove());
+        // Clear last game bars in the chart
+        barChart.clear();
     })
 
 // End of reset button
