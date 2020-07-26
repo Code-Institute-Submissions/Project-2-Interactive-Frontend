@@ -61,6 +61,7 @@ let wantedMarker = L.featureGroup();
 // To display pokemon profiles in captured gallery
 let capturedDiv = document.querySelector("#wanted-gallery");
 let capturedDivChild;
+let identityDiv = document.querySelector("#pokemon-profile");
 // To count marker clicks and present it bar chart
 let totalCounterData = []
 let totalCounter = 0
@@ -99,6 +100,8 @@ function endRound(){
                     totalCounterData.push(totalCounter)
                     // Reveal the position of wanted Pokemon when timer is 0
                     randomMarker.clearLayers();
+                    // Song stops when timer at 0
+                    song.pause();
                 }
                 let secs = timer.end;
                 timer.sec.innerHTML = secs
@@ -139,7 +142,7 @@ function endRound(){
             // to add in #pokemon-profile
             let HTMLfragment = `<h3 style="margin: 5px;">${response.data.name.toUpperCase()}</h3>
             <img src="${response.data.sprites.front_default}"/>`
-            let identityDiv = document.querySelector("#pokemon-profile");
+            // let identityDiv = document.querySelector("#pokemon-profile");
             identityDiv.innerHTML = HTMLfragment;
             let wantedPokemonMarkerPositon = getRandomLatLng(map);
         // Conditions to change marker color according to pokemon type
@@ -225,7 +228,6 @@ function endRound(){
     start.addEventListener("click", function(){
         startGame();
         song.play();
-
     })
 
     // add 29 random pokemon to map
@@ -322,6 +324,9 @@ function endRound(){
         map.setView(singapore, 12);
         // updates the number of marker clicks after each round
         barChart.update();
+        // Stop song and plays from the start again
+        song.pause();
+        song.load();
     })
     // End of quit button
 
@@ -342,8 +347,8 @@ function endRound(){
         totalCounterData.length = 0;
         // Removes all pokemon profile on captured gallery
         capturedDiv.querySelectorAll("div").forEach(n => n.remove());
-        // Clear last game bars in the chart
-        barChart.clear();
+        // Clear wanted pokemon in status bar
+        identityDiv.innerHTML = "";
     })
 
 // End of reset button
