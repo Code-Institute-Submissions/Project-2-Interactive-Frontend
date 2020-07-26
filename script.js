@@ -135,7 +135,7 @@ function endRound(){
         pokemonNumber = Math.floor((Math.random()*151)+1);
         axios.get(url + pokemonNumber).then(function(response){
             // to add in #pokemon-profile
-            let HTMLfragment = `<h3>${response.data.name.toUpperCase()}</h3>
+            let HTMLfragment = `<h3 style="margin: 5px;">${response.data.name.toUpperCase()}</h3>
             <img src="${response.data.sprites.front_default}"/>`
             let identityDiv = document.querySelector("#pokemon-profile");
             identityDiv.innerHTML = HTMLfragment;
