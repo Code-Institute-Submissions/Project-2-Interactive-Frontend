@@ -1,7 +1,23 @@
 /* For Navbar */
 #navbar {
     font-size: 2em;
-    align-items: center;
+    display:flex;
+    justify-content: center;
+    margin: 20px;
+    /* align-items: center; */
+}
+.nav-button {
+   background: none;
+   padding: 0;
+   border: 0;
+   margin-right: 50px;
+}
+/* .nav-button:hover {
+    color: yellow;
+}  */
+.nav-button img {
+    height: 60px;
+    width: 60px;
 }
 /* End of Navbar */
 
@@ -57,7 +73,7 @@ body {
 #logo {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 #logo img {
     height: auto;
