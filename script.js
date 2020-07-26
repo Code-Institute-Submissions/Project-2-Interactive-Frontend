@@ -59,7 +59,7 @@ let pokemonNumber = Math.floor((Math.random()*151)+1);
 let randomMarker = L.featureGroup();
 let wantedMarker = L.featureGroup();
 // To display pokemon profiles in captured gallery
-let capturedDiv = document.querySelector("#captured-gallery");
+let capturedDiv = document.querySelector("#wanted-gallery");
 let capturedDivChild;
 // To count marker clicks and present it bar chart
 let totalCounterData = []
@@ -203,7 +203,7 @@ function endRound(){
                 wantedPokemonMarker.addTo(wantedMarker);
             }
             // Add pokemon profiles to captured gallery
-            let capturedHTML = `<div class="card row"><h3>${response.data.name.toUpperCase()}</h3>
+            let capturedHTML = `<div class="card" style="width: 10vw"><h3>${response.data.name.toUpperCase()}</h3>
             <img src="${response.data.sprites.front_default}"/></div>`
             capturedDivChild = document.createElement("div");
             capturedDivChild.innerHTML = capturedHTML
