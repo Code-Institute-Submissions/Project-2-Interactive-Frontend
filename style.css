@@ -10,11 +10,12 @@
    background: none;
    padding: 0;
    border: 0;
+   /* border-radius: 75%; */
    margin-right: 50px;
 }
-/* .nav-button:hover {
+.nav-button img:hover {
     color: yellow;
-}  */
+} 
 .nav-button img {
     height: 60px;
     width: 60px;
@@ -83,7 +84,10 @@ body {
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 10px;
+}
+#title h1 {
+    margin-top: 10px;
 }
 #rules {
     display: flex;
