@@ -13,8 +13,9 @@ body {
     border: 0;
     background-image: url(image/pokemon-background.jpg);
     /* background-position: center; */
+    background-position: top;
     background-repeat: no-repeat;
-    background-size: cover;
+    /* background-size: cover; */
 }
 .all-pages {
     position: relative;
@@ -78,7 +79,7 @@ body {
 
 /* Start of Game Page */
 #status-bar {
-    background-color: steelblue;
+    /* background-color: steelblue; */
     height: 175px;
     /* height: 300px; */
     display: flex;
@@ -116,7 +117,7 @@ body {
 }
 
 #marker-legend {
-    background-color: cyan;
+    /* background-color: cyan; */
     text-align: center;
     /* justify-content: center; */
     /* display: flex; */
