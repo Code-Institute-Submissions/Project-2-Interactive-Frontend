@@ -350,7 +350,7 @@ let options = {
         text: "Total Accumulated Pokemon Marker Clicks",
         fontSize: 24,
         fontFamily: "Francois One",
-        // fontColor: "#FFCC00"
+        fontColor: "black" 
     },
     scales: {yAxes:[{
         ticks: {

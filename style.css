@@ -28,6 +28,7 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
+    background: g#7DAD71;
     background-image: url(image/pokemon-background.jpg);
     /* background-position: center; */
     background-position: top;
@@ -204,18 +205,29 @@ body {
 #header {
     text-align: center;
     font-family: 'Francois One';
+    margin: 0;
     /* color: #FFCC03; */
 
+}
+#header h1 {
+    margin: 5px;
+}
+#header h2 {
+    margin: 5px;
 }
 #wanted-gallery {
     display: flex;
     justify-content: center;
     flex-direction: row;
 }
-/* #chart-container {
-    display: flex;
-    justify-content: center;
-} */
+#chart-container {
+    display: inline-block;
+    margin: 150px;
+    margin-top: 20px;
+    /* align-self: center; */
+    /* text-align: center; */
+    /* justify-content: center; */
+}
 /* #bar-chart { */
     /* padding: 30px; */
     /* height: 80%; */
