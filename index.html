@@ -96,25 +96,25 @@
                     </div>
                 </div>
                 <div id="map"></div>
+                
                 <div id="controls">
                     <button id="start-btn" class="controls">Start Game</button>
                     <button id="quit-btn" class="controls">Quit Round</button>
                     <button id="reset-btn" class="controls">Reset Game</button>
-                    <audio id="pokesong" src="pokesong.mp3"></audio>
+                    <button id="song-btn" class="controls"><audio controls id="pokesong" src="pokesong.mp3"></audio></button>
                 </div>
         </div>
 
         <!-- Start of Stats Page -->
         <div id="page-3" class="page hidden">
-        <div id="header">
-            <h1>Wanted Gallery</h1>
-            <h2>Did you catch them all?</h2>
-        </div>
-        <div id="wanted-gallery" class="row"></div>
-        <div id="chart-container" style="position: relative; height:auto; width:80vw;">
-            <canvas id="bar-chart"></canvas>
-        </div>
-        <canvas id="line-chart"></canvas>
+            <div id="header">
+                <h1>Wanted Gallery</h1>
+                <h2>Did you catch them all?</h2>
+            </div>
+            <div id="wanted-gallery" class="row"></div>
+            <div id="chart-container" style="position: relative; height:auto; width:80vw;">
+                <canvas id="bar-chart"></canvas>
+            </div>
 
         </div>
     </div>

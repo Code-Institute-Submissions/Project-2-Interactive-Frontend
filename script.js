@@ -386,25 +386,4 @@ let barChart = new Chart(barContext, {
     options: options
 });
 
-// start of line chart
-
-// let lineContext =document.querySelector("#line-chart").getContext("2d");
-// let lineChart = new Chart(lineContext, {
-//     type: "line",
-//     data: {
-//         labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"],
-//         datasets: [{
-//             label: "Total Pokemon Marker Clicks",
-//             // data: totalCounterData,
-//             data: [200, 300, 400, 0, 20],
-//             // color the line
-//             // backgroundColor: "red",
-//             // borderColor: "red",
-//             // borderWidth: 1
-//         }]
-//     },
-//     options: options
-// });
-
-
 })
