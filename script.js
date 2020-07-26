@@ -345,6 +345,13 @@ function endRound(){
 
 // Start of Stats Page
 let options = {
+    title: {
+        display: true,
+        text: "Total Accumulated Pokemon Marker Clicks",
+        fontSize: 24,
+        fontFamily: "Francois One",
+        // fontColor: "#FFCC00"
+    },
     scales: {yAxes:[{
         ticks: {
             beginAtZero: true
@@ -360,7 +367,9 @@ let barChart = new Chart(barContext, {
         datasets: [{
             label: "Total Pokemon Marker Clicks",
             data: totalCounterData,
-            backgroundColor: ["blue", "blue", "blue", "blue", "blue"]
+            backgroundColor: ["#FFCC00", "#FFCC00", "#FFCC00", "#FFCC00", "#FFCC00",],
+            responsive: true,
+            maintainAspectRatio: false
         }]
     },
     options: options
