@@ -26,12 +26,11 @@
 /* End of Navbar */
 
 /* For all pages */
-/* For All PAGES */
 body {
     margin: 0;
     padding: 0;
     border: 0;
-    background: g#7DAD71;
+    background-color: #7DAD71;
     background-image: url(image/pokemon-background.jpg);
     /* background-position: center; */
     background-position: top;
@@ -202,8 +201,16 @@ body {
     padding: 10px;
     /* width: 100px; */
 }
-/* #controlSpacer {
-   transform: translate(0px, 20px);
+/* #song-control {
+
+    padding: 10px;
+    margin: 0 auto;
+    display: table;
+}
+#song-control button {
+    background-color: #79C9FA;
+    border-radius: 10px;
+
 } */
 /* End of Game Page */
 
@@ -228,7 +235,7 @@ body {
 }
 #chart-container {
     display: inline-block;
-    margin: 150px;
+    margin: 100px;
     margin-top: 20px;
     /* align-self: center; */
     /* text-align: center; */
