@@ -52,6 +52,13 @@ body {
     /* cover screen horizontally */
     width: 100%;
 }
+#page-1 footer {
+       /* color: #FFCC00;
+       font-family: 'Francois One'; */
+       /* padding:20px; */
+       transform: translate(0px, 180%);
+}
+
 #page-2 {
     position: absolute;
     /* background-color: rgb(182, 230, 182); */
@@ -104,11 +111,13 @@ body {
     font-size: 2em;
     /* margin-top: 30px; */
     margin: 0;
+    padding-bottom: 10px;
     font-family: 'Francois One';
     color: #FFCC00;
     /* background: blue; */
     background-color: rgb(125, 173, 113, 0.5);
-    transform: translate(0px, 85%);
+    transform: translate(0px, 80%);
+    /* padding: 10px; */
 }
 #rules p {
      margin: 10px;
@@ -248,3 +257,10 @@ body {
     /* height: 80%; */
     /* width: auto; */
 /* } */
+
+footer {
+       color: #FFCC00;
+       font-family: 'Francois One';
+       padding:20px;
+       text-align: center;
+}
