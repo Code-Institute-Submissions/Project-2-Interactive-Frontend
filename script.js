@@ -440,6 +440,7 @@ $(function () {
     // start button to be disabled after 5 rounds to prompt user to reset
     if (round == 5) {
       start.disabled = true;
+      alert("Check your stats!");
     } else {
       start.disabled = false;
     }
@@ -454,6 +455,7 @@ $(function () {
     song.load();
   });
   // End of quit button
+
 
   // Start of reset button
   let reset = document.querySelector("#reset-btn");
