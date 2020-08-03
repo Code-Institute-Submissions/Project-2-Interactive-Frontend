@@ -246,11 +246,16 @@ body {
 }
 #chart-container {
     display: inline-block;
-    margin: 100px;
+    margin: 150px;
     margin-top: 20px;
+    margin-bottom: 20px;
     /* align-self: center; */
     /* text-align: center; */
-    /* justify-content: center; */
+    justify-content: center;
+}
+#bar-chart {
+  background-color: rgb(255, 255, 255, 0.5);
+  /* align-self: center; */
 }
 /* #bar-chart { */
     /* padding: 30px; */
