@@ -516,14 +516,16 @@ $(function () {
   // start of bar chart
   let barContext = document.querySelector("#bar-chart").getContext("2d");
   let barChart = new Chart(barContext, {
-    type: "bar",
+    // type: "bar",
+    type: "line",
     data: {
       labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"],
       datasets: [
         {
           label: "Total Pokemon Marker Clicks",
           data: totalCounterData,
-          backgroundColor: [ "#FFCC00", "#FFCC00", "#FFCC00", "#FFCC00", "#FFCC00"],
+        //   backgroundColor: [ "#FFCC00", "#FFCC00", "#FFCC00", "#FFCC00", "#FFCC00"],
+          backgroundColor: "#FFCC00",
           responsive: true,
           maintainAspectRatio: false,
         },
