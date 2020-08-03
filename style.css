@@ -250,6 +250,10 @@ body {
     justify-content: center;
     flex-direction: row;
 }
+#page-3 h1 {
+    text-align: center;
+    font-family: 'Francois One';
+}
 #chart-container {
     display: inline-block;
     margin: 150px;

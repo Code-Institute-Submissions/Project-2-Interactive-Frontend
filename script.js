@@ -485,10 +485,10 @@ $(function () {
 
   // Start of Stats Page
   let options = {
-    title: {
-        display: true, text: "Total Accumulated Pokemon Marker Clicks",
-        fontSize: 24, fontFamily: "Francois One", fontColor: "black"
-    },
+    // title: {
+    //     display: true, text: "Total Accumulated Pokemon Marker Clicks",
+    //     fontSize: 24, fontFamily: "Francois One", fontColor: "black"
+    // },
     scales: {
       xAxes: [
         {
