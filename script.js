@@ -449,7 +449,7 @@ $(function () {
     // set map back to origin after each round
     map.setView(singapore, 12);
     // updates the number of marker clicks after each round
-    barChart.update();
+    lineChart.update();
     // Stop song and plays from the start again
     song.pause();
     song.load();
@@ -477,6 +477,7 @@ $(function () {
     capturedDiv.querySelectorAll("div").forEach((n) => n.remove());
     // Clear wanted pokemon in status bar
     identityDiv.innerHTML = "";
+    lineChart.clear()
   });
 
   // End of reset button
@@ -514,8 +515,8 @@ $(function () {
     },
   };
   // start of bar chart
-  let barContext = document.querySelector("#bar-chart").getContext("2d");
-  let barChart = new Chart(barContext, {
+  let lineContext = document.querySelector("#line-chart").getContext("2d");
+  let lineChart = new Chart(lineContext, {
     // type: "bar",
     type: "line",
     data: {

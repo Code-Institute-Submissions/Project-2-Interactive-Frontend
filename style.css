@@ -253,7 +253,7 @@ body {
     /* text-align: center; */
     justify-content: center;
 }
-#bar-chart {
+#line-chart {
   background-color: rgb(255, 255, 255, 0.5);
   /* align-self: center; */
 }
