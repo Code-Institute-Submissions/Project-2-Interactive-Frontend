@@ -258,6 +258,7 @@ body {
     /* align-self: center; */
     /* text-align: center; */
     justify-content: center;
+    width: 350px;
 }
 #line-chart {
   background-color: rgb(255, 255, 255, 0.5);
@@ -274,4 +275,11 @@ footer {
        font-family: 'Francois One';
        padding:20px;
        text-align: center;
+}
+
+
+@media only screen and (min-width: 768px) {
+    #chart-container {
+        width: 750px;
+    }
 }
