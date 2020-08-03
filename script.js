@@ -446,6 +446,7 @@ $(function () {
     // start button to be disabled after 5 rounds to prompt user to reset
     if (round == 5) {
       start.disabled = true;
+      quit.disabled = true;
       alert("Check your stats!");
     } else {
       start.disabled = false;
@@ -475,6 +476,7 @@ $(function () {
     removeMarkers();
     // Enables start button
     start.disabled = false;
+    quit.disabled = false;
     // set map back to origin after each round
     map.setView(singapore, 12);
     alert("Start of New Game!");
