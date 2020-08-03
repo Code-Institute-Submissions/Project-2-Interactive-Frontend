@@ -472,6 +472,7 @@ $(function () {
     alert("Start of New Game!");
     // Removes all marker click data on bar chart
     totalCounterData.length = 0;
+    totalCounter = 0;
     // Removes all pokemon profile on captured gallery
     capturedDiv.querySelectorAll("div").forEach((n) => n.remove());
     // Clear wanted pokemon in status bar
