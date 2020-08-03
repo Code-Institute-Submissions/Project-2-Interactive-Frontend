@@ -82,38 +82,11 @@ $(function () {
   function endRound() {
     // this event is only possible if using featureGroup()
     wantedMarker.on("click", function () {
+    //   totalCounter += 1;
       timer.end = 0;
-      totalCounter += 1;
+      
     });
   }
-  // Start of 30 seconds countdown
-  let timer = {};
-  function countdown() {
-    // 30 seconds countdown + 1 second reaction time
-    timer.end = 31;
-    timer.sec = document.querySelector("#seconds");
-    // start if not 0
-    if (timer.end > 0) {
-      // hold timer object that repeats every 1 sec
-      timer.ticker = setInterval(function () {
-        timer.end--;
-        if (timer.end <= 0) {
-          // clears timer with setInterval
-          clearInterval(timer.ticker);
-          timer.end = 0;
-          // Add number of clicks array
-          totalCounterData.push(totalCounter);
-          // Reveal the position of wanted Pokemon when timer is 0
-          randomMarker.clearLayers();
-          // Song stops when timer at 0
-          song.pause();
-        }
-        let secs = timer.end;
-        timer.sec.innerHTML = secs;
-      }, 1000);
-    }
-  }
-  // end of timer
 
   // start of round
   let round = 0;
@@ -433,6 +406,39 @@ $(function () {
   randomMarker.on("click", function () {
     totalCounter += 1;
   });
+// Have to be placed outside of endRound() to avoid increasing by + 1 per round 
+    wantedMarker.on("click", function () {
+    totalCounter += 1;
+  });
+
+    // Start of 30 seconds countdown
+  let timer = {};
+  function countdown() {
+    // 30 seconds countdown + 1 second reaction time
+    timer.end = 31;
+    timer.sec = document.querySelector("#seconds");
+    // start if not 0
+    if (timer.end > 0) {
+      // hold timer object that repeats every 1 sec
+      timer.ticker = setInterval(function () {
+        timer.end--;
+        if (timer.end <= 0) {
+          // clears timer with setInterval
+          clearInterval(timer.ticker);
+          timer.end = 0;
+          // Add number of clicks array
+          totalCounterData.push(totalCounter);
+          // Reveal the position of wanted Pokemon when timer is 0
+          randomMarker.clearLayers();
+          // Song stops when timer at 0
+          song.pause();
+        }
+        let secs = timer.end;
+        timer.sec.innerHTML = secs;
+      }, 1000);
+    }
+  }
+  // end of timer
 
   // Start of quit button
   let quit = document.querySelector("#quit-btn");
@@ -453,6 +459,8 @@ $(function () {
     // Stop song and plays from the start again
     song.pause();
     song.load();
+    console.log(totalCounter)
+    // totalCounter = 0;
   });
   // End of quit button
 
