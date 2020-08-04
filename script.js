@@ -24,10 +24,8 @@ $(function () {
     let northEast = bounds.getNorthEast();
     let lngSpan = northEast.lng - southWest.lng;
     let latSpan = northEast.lat - southWest.lat;
-
     let randomLng = Math.random() * lngSpan + southWest.lng;
     let randomLat = Math.random() * latSpan + southWest.lat;
-
     return [randomLat, randomLng];
   }
 
@@ -37,8 +35,8 @@ $(function () {
   let map = L.map("map", { zoomControl: false }).setView(singapore, 12);
   // Prevent map from zooming using mouse
   map.scrollWheelZoom.disable();
+  // Prevent map from zooming on mobile and tablet devices  
   map.touchZoom.disable();
-
   // Setup the tile layers
   L.tileLayer(
     "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
@@ -56,7 +54,6 @@ $(function () {
   ).addTo(map);
 
   // All global variables
-
   // For adding pokemon picture and name into status bar
   let url = "https://pokeapi.co/api/v2/pokemon/";
   // Only take out random pokemon from generation 1
@@ -64,13 +61,14 @@ $(function () {
   // Use featureGroup rather than layerGroup so that markers can be clicked on individually
   let randomMarker = L.featureGroup();
   let wantedMarker = L.featureGroup();
-  // To display pokemon profiles in captured gallery
+  // To display pokemon profiles in gallery
   let capturedDiv = document.querySelector("#wanted-gallery");
   let capturedDivChild;
   let identityDiv = document.querySelector("#pokemon-profile");
-  // To count marker clicks and present it bar chart
+  // To count marker clicks and present it line chart
   let totalCounterData = [];
   let totalCounter = 0;
+  // Select song   
   let song = document.querySelector("#pokesong");
 
   //  To remove markers from maps
@@ -83,9 +81,7 @@ $(function () {
   function endRound() {
     // this event is only possible if using featureGroup()
     wantedMarker.on("click", function () {
-    //   totalCounter += 1;
       timer.end = 0;
-      
     });
   }
 
@@ -110,7 +106,6 @@ $(function () {
     // round = document.querySelector("#round-count").innerText;
     $("#round-count").text(round);
   }
-
   // end of round
 
   // Generate wanted pokemon and other follow up functions when start pressed
@@ -121,7 +116,6 @@ $(function () {
       // to add in #pokemon-profile
       let HTMLfragment = `<h3 style="margin: 5px;">${response.data.name.toUpperCase()}</h3>
             <img src="${response.data.sprites.front_default}"/>`;
-      // let identityDiv = document.querySelector("#pokemon-profile");
       identityDiv.innerHTML = HTMLfragment;
       let wantedPokemonMarkerPositon = getRandomLatLng(map);
       // Conditions to change marker color according to pokemon type
@@ -272,7 +266,6 @@ $(function () {
   // add 29 random pokemon to map
   function randomPokemon() {
     //  need to make url and pokemonNumber in scope if not pokemon generated will be same as wantedPokemon
-    // let url = "https://pokeapi.co/api/v2/pokemon/";
     for (let r = 0; r < 30; r++) {
       let pokemonNumber = Math.floor(Math.random() * 151 + 1);
       axios.get(url + pokemonNumber).then(function (response) {
@@ -444,7 +437,7 @@ $(function () {
   // Start of quit button
   let quit = document.querySelector("#quit-btn");
   quit.addEventListener("click", function () {
-    // start button to be disabled after 5 rounds to prompt user to reset
+    // start and quit button to be disabled after 5 rounds to prompt user to reset
     if (round == 5) {
       start.disabled = true;
       quit.disabled = true;
@@ -461,8 +454,6 @@ $(function () {
     // Stop song and plays from the start again
     song.pause();
     song.load();
-    console.log(totalCounter)
-    // totalCounter = 0;
   });
   // End of quit button
 
@@ -475,32 +466,29 @@ $(function () {
     updateRound();
     timer.end = 0;
     removeMarkers();
-    // Enables start button
+    // Enables start and quit button
     start.disabled = false;
     quit.disabled = false;
     // set map back to origin after each round
     map.setView(singapore, 12);
     alert("Start of New Game!");
-    // Removes all marker click data on bar chart
+    // Removes all marker click data
     totalCounterData.length = 0;
     totalCounter = 0;
     // Removes all pokemon profile on captured gallery
     capturedDiv.querySelectorAll("div").forEach((n) => n.remove());
     // Clear wanted pokemon in status bar
     identityDiv.innerHTML = "";
+    // Clear line chart
     lineChart.clear()
   });
-
   // End of reset button
   // End of Games Page
 
   // Start of Stats Page
   let options = {
-    // title: {
-    //     display: true, text: "Total Accumulated Pokemon Marker Clicks",
-    //     fontSize: 24, fontFamily: "Francois One", fontColor: "black"
-    // },
     scales: {
+        // To add color to gridlines and background
       xAxes: [
         {
           display: true,
@@ -528,7 +516,6 @@ $(function () {
   // start of bar chart
   let lineContext = document.querySelector("#line-chart").getContext("2d");
   let lineChart = new Chart(lineContext, {
-    // type: "bar",
     type: "line",
     data: {
       labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"],
@@ -536,8 +523,8 @@ $(function () {
         {
           label: "Total Pokemon Marker Clicks",
           data: totalCounterData,
-        //   backgroundColor: [ "#FFCC00", "#FFCC00", "#FFCC00", "#FFCC00", "#FFCC00"],
           backgroundColor: "#FFCC00",
+        //   Make it mobile responsive and adjust the height
           responsive: true,
           maintainAspectRatio: false,
         },
