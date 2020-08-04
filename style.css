@@ -213,6 +213,7 @@ body {
 #map {
     height: 400px;
     width: 85%;
+    border: 1px solid black
 }
 #controls {
     display: flex;
@@ -221,6 +222,7 @@ body {
     flex-direction: column;
     max-height: 400px;
     width: 15%;
+    border: 1px solid black;
     /* margin: 20px; */
 }
 #controls button {
