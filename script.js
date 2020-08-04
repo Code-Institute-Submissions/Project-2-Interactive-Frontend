@@ -37,6 +37,7 @@ $(function () {
   let map = L.map("map", { zoomControl: false }).setView(singapore, 12);
   // Prevent map from zooming using mouse
   map.scrollWheelZoom.disable();
+  map.touchZoom.disable();
 
   // Setup the tile layers
   L.tileLayer(
