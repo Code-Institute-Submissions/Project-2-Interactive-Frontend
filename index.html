@@ -30,11 +30,7 @@
             </div>
             <div id="title" class="row">
                 <div>
-                    <!-- <h1>Pokemon Hunter</h1> -->
                     <h1><img src="image/Hunter.png"></h1>
-                    <!-- <h1>Hunter</h1>
-                    <h2><a href="https://fontmeme.com/pokemon-go-font/"><img src="https://fontmeme.com/permalink/200726/b8b1c9635139a5794af4cd5b6757676a.png" alt="pokemon-go-font" border="0"></a></h2>
-                    <h3>Singapore</h3> -->
                 </div>
             </div>
             <div id="rules" class="col">
@@ -42,14 +38,6 @@
                 <p>Use their types to capture them</p>
                 <p>You have 30 seconds and 5 rounds</p>
                 <p>Do you want to be the very best?</p>
-                <!-- <ul>
-                    <li>Hunt the wanted Pokemon!</li>
-                    <li>30 pokemons will be unleashed all around Singapore</li>
-                    <li>Each marker shows the Pokemon types</li>
-                    <li>Hunt the Pokemon base on their types</li>
-                    <li>You have 5 rounds</li>
-                    <li>Do you want to be the very best?</li>
-                </ul> -->
             </div>
             <footer>
                 <p>©1995–2020 Nintendo / Creatures Inc. / GAME FREAK inc. Pokémon and Pokémon character names are trademarks of Nintendo.</p>
@@ -60,6 +48,7 @@
         <div id="page-2" class="page hidden">
         <!-- <h1>Game</h1> -->
             <div id="marker-legend" class="container-fluid">
+            <!-- Split the markers into 3 list to have a compact design -->
                 <ul>
                     <li><img src="icon/normal.png"></li>
                     <li><img src="icon/fire.png"></li>
@@ -98,12 +87,6 @@
                         <p><span id="round-count">0</span>/5</p>
                     </div>
                 </div>
-                <!-- <div id="map"></div>
-                <div id="controls">
-                    <button id="start-btn" class="controls">Start Game</button>
-                    <button id="quit-btn" class="controls">Quit Round</button>
-                    <button id="reset-btn" class="controls">Reset Game</button>
-                </div> -->
                 <div id="map-wrapper">
                     <div id="map"></div>
                     <div id="controls">
@@ -112,12 +95,9 @@
                         <button id="reset-btn" class="controls">Reset Game</button>
                     </div>
                 </div>
+                <!-- Style added to bring the song control to middle of page -->
                 <div id="song-control" style="margin: 5px auto; display: table;">
-                <!-- <div id="song-control"> -->
-                    <!-- <button id="song-btn" class="controls"> -->
                     <audio controls id="pokesong"><source src="pokesong.mp3" type="audio/mpeg"></audio>
-                    <!-- <audio controls id="pokesong"class="center"><source src="pokesong.mp3" type="audio/mpeg"></audio> -->
-                    <!-- </button> -->
                 </div>
                 <footer>
                     <p>©1995–2020 Nintendo / Creatures Inc. / GAME FREAK inc. Pokémon and Pokémon character names are trademarks of Nintendo.</p>
@@ -132,6 +112,7 @@
             </div>
             <div id="wanted-gallery" class="row"></div>
             <h1>Total Accumulated Pokemon Marker Clicks</h1>
+            <!-- Style added to make the chart responsive and bring it to center of page -->
             <div id="chart-container" style="position: relative; height:auto; width:80vw; margin: 5px auto; display: table;">
                 <canvas id="line-chart"></canvas>
             </div>
@@ -142,10 +123,6 @@
             <!-- </div> -->
         </div>
     </div>
-
-    <!-- <footer>
-        <p>©2020 Pokémon. ©1995–2020 Nintendo / Creatures Inc. / GAME FREAK inc. Pokémon and Pokémon character names are trademarks of Nintendo.</p>
-    </footer> -->
 
         <!-- jQuery first, then Bootstrap then everythin else, script.js last -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
