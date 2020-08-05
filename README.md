@@ -17,6 +17,33 @@ User story
 - As a developer, I would like to engage gamers with new concept of gaming to test their success rate in to create a hit game
 - As a developer, I would like to get more awareness of my brand by creating games that leverage on popular brands to get more customer and partners
 
+### Scope
+Functions required:
+-	Nav bar for single page application
+-	Card to place pictures
+-	Countdown timer
+-	Counter for rounds
+-	Map to place markers
+-	Graphs to display stats
+
+### Structure
+![](readme-image/website-design.JPG)
+
+The website is designed as a single page application to reduce any latency when switching from pages. It follows a Hub design with 3 buttons to navigate from Home, Game and Stats page and each page can go directly to the desired page from where they are.
+
+![](readme-image/gameplay1.jpg)
+
+The game will begin when the start button is clicked. This will result in the generation of 1 wanted Pokemon marker and 29 random Pokemon markers. These markers will be labeled with their respective Pokémon types. The countdown will be from 30 seconds and the round will increase to 1.
+The round ends when the countdown reaches 0 seconds or if the wanted Pokemon is captured. After 5 rounds are completed the game will end. In order to replay the game, click on reset and it will set the rounds back to 0.
+
+### Wireframe
+![](readme-image/wireframe.JPG)
+### Screenshots of completed website
+![](readme-image/screenshot.jpg)
+
+
+![](readme-image/testing-procedure-pg-1.JPG)
+![](readme-image/testing-procedure-pg-2.JPG)
 
 <img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
 
