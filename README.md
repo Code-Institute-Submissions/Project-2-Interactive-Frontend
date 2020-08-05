@@ -1,3 +1,23 @@
+# Pokemon Hunter
+
+## Project 2: Interactive Front-End Development 
+
+### Context
+Website is designed for a game in which the user catches a Wanted Pokemon within a time limit base on their type. 30 Random Pokemon markers will be generated on a Leaflet map from a Pokemon API. The goal is to click on the Wanted Pokemon marker within 30 seconds to win the round. 5 rounds will be played before the game has to be reset. The accumulated clicks of the user for the rounds and the Wanted Pokemon will be displayed on the statistic page. 
+
+The website can be accessed  via this link: https://freezefaz.github.io/Project-2-Interactive-Frontend/
+
+## UX
+
+### Strategy
+The game is to appeal to Pokemon fans and casual gamers alike. It also takes into the game developer’s point of view.
+User story 
+- As a Pokemon fan, I would like to play a Pokemon related game that so that I can test my knowledge of Pokemon
+- As a casual gamer, I would like to play a quick game that will help me pass the time to cure my boredom
+- As a developer, I would like to engage gamers with new concept of gaming to test their success rate in to create a hit game
+- As a developer, I would like to get more awareness of my brand by creating games that leverage on popular brands to get more customer and partners
+
+
 <img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
 
 Welcome Freezefaz,
