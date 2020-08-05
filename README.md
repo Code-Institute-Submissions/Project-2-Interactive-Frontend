@@ -48,11 +48,22 @@ The round ends when the countdown reaches 0 seconds or if the wanted Pokemon is 
 ### Features Left to Implement
 
 ## Technologies Used
+1. HTML
+2. CSS
+3. Bootstrap (4.5)
+4. GoogleFonts
+5. Javascript
+6. Leaflet
+7. JQuery
+8. Ajax
+9. Axios
+10. Chart JS
 
 ## Testing
 
 ### Testing Overview
 No automated testing was done
+
 Testing of website was done on:
 
 Devices:
@@ -66,7 +77,6 @@ Websites:
 3. Edge
 
 ### Testing Procedure
-
 ![](readme-image/testing-procedure-pg-1.JPG)
 ![](readme-image/testing-procedure-pg-2.JPG)
 
@@ -78,10 +88,17 @@ Websites:
 - The same Pokemon can appear as both the Wanted and Random Pokemon, hence it may cause confusion as to why the game has not ended or why the Pokemon was not captured.
 - The Pokemon Markers may end up getting generated behind one another, hence it may “hide” in between markers making them hard to find and click on.
 
-
-
 ## Deployment
 
+### Process
+- The project is based on Code Institute's template and was cloned upon initialisation to local drive through git clone in the command prompt.
+- Gitpod was employed to code the website. Firefox browser was used to preview the website.
+- The master branch of the website was deployed through Github.
+
+### Running Code
+- Website link is hosted by Github: https://freezefaz.github.io/Project-2-Interactive-Frontend/.
+- You can either use the fork function on Github or clone/download button to duplicate the files in master branch. For cloning, type git clone https://github.com/Freezefaz/Project-2-Interactive-Frontend.git in your system's command prompt.
+- Use a code editor/IDE such as Visual Studio Code or Gitpod to open the folder and preview the website by running the code.
 
 ## Credits
 
