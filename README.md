@@ -38,12 +38,52 @@ The round ends when the countdown reaches 0 seconds or if the wanted Pokemon is 
 
 ### Wireframe
 ![](readme-image/wireframe.JPG)
+
+## Features
 ### Screenshots of completed website
 ![](readme-image/screenshot.jpg)
 
+### Existing Features
+
+### Features Left to Implement
+
+## Technologies Used
+
+## Testing
+
+### Testing Overview
+No automated testing was done
+Testing of website was done on:
+
+Devices:
+1. Samsung S10e
+2. Samsung Galaxy Tab S2
+3. 14-inch Laptop
+
+Websites:
+1. Firefox
+2. Chrome
+3. Edge
+
+### Testing Procedure
 
 ![](readme-image/testing-procedure-pg-1.JPG)
 ![](readme-image/testing-procedure-pg-2.JPG)
+
+### Known Bugs
+- The line chart canvas will encroach into the Home and Game pages if it shrinks from a screen width lesser than 1222px. It seems that the line chart canvas is not media responsive in terms of shrinking.
+- There is no issue if the screen expands from a mobile to tablet to laptop. If only have issues if it is shrinking from a bigger device to smaller. On the devices itself there are no issues.
+
+- The random number used for generating Pokemon has its limitations and it surfaces in these scenarios:
+- The same Pokemon can appear as both the Wanted and Random Pokemon, hence it may cause confusion as to why the game has not ended or why the Pokemon was not captured.
+- The Pokemon Markers may end up getting generated behind one another, hence it may “hide” in between markers making them hard to find and click on.
+
+
+
+## Deployment
+
+
+## Credits
 
 <img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
 
@@ -57,30 +97,3 @@ To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the ter
 
 `python3 -m http.server`
 
-A blue button should appear to click: *Make Public*,
-
-Another blue button should appear to click: *Open Browser*.
-
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A blue button should appear to click: *Make Public*,
-
-Another blue button should appear to click: *Open Browser*.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
-
-## Updates Since The Instructional Video
-
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
